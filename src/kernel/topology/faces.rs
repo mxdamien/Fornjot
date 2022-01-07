@@ -1,6 +1,7 @@
 use std::collections::BTreeSet;
 
 use decorum::R64;
+use parry2d_f64::shape::Triangle as Triangle2;
 use parry3d_f64::{
     bounding_volume::AABB,
     math::Isometry,
@@ -11,7 +12,7 @@ use parry3d_f64::{
 use crate::{
     debug::{DebugInfo, TriangleEdgeCheck},
     kernel::geometry::Surface,
-    math::Point,
+    math::Point2,
 };
 
 use super::edges::Edges;
@@ -70,7 +71,10 @@ impl Face {
             } => {
                 let mut vertices = Vec::new();
                 edges.approx_vertices(tolerance, &mut vertices);
-                let mut triangles = triangulate(&vertices);
+
+                let vertices_2d: Vec<_> =
+                    vertices.iter().map(|point| point.xy()).collect();
+                let mut triangles = triangulate(&vertices_2d);
 
                 // For the next step, we need to represent the face as a
                 // polygon, but there aren't many requirements on how
@@ -182,7 +186,7 @@ impl Face {
 }
 
 /// Create a Delaunay triangulation of all vertices
-pub fn triangulate(vertices: &[Point]) -> Vec<Triangle3> {
+pub fn triangulate(vertices: &[Point2]) -> Vec<Triangle2> {
     let points: Vec<_> = vertices
         .iter()
         .map(|vertex| delaunator::Point {
