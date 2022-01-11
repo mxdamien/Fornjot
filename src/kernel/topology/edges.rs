@@ -1,8 +1,9 @@
+use parry2d_f64::shape::Segment as Segment2;
 use parry3d_f64::shape::Segment as Segment3;
 
 use crate::{
-    kernel::geometry::{Circle, Curve, Line},
-    math::Point,
+    kernel::geometry::{Circle, Curve, Line, Surface},
+    math::{Point, Point2},
 };
 
 /// The edges of a shape
@@ -27,14 +28,22 @@ impl Edges {
         }
     }
 
-    /// Compute vertices to approximate the edges
+    /// Compute an approximation of the edges in surface coordinates
     ///
-    /// `tolerance` defines how far these vertices are allowed to deviate from
-    /// the actual edges of the shape.
-    pub fn approx_vertices(&self, tolerance: f64, out: &mut Vec<Point>) {
-        for cycle in &self.cycles {
-            cycle.approx_vertices(tolerance, out);
-        }
+    /// `surface` defines the surface in whose coordinates the returned
+    /// approximation must be expressed. It must be the surface that all edges
+    /// are in.
+    ///
+    /// # Panics
+    ///
+    /// Might panic, if not all edges are in the surface defined by `surface`.
+    pub fn surface_approx(
+        &self,
+        _surface: &Surface,
+        _tolerance: f64,
+    ) -> Approximation {
+        // TASK: Implement
+        todo!()
     }
 
     /// Compute line segments to approximate the edges
@@ -48,6 +57,12 @@ impl Edges {
     }
 }
 
+// TASK: Placeholder
+pub struct Approximation {
+    pub vertices: Vec<Point2>,
+    pub segments: Vec<Segment2>, // TASK: Make this a surface segment.
+}
+
 /// A cycle of connected edges
 ///
 /// The end of each edge in the cycle must connect to the beginning of the next
@@ -58,23 +73,6 @@ pub struct Cycle {
 }
 
 impl Cycle {
-    /// Compute vertices to approximate the edges of this cycle
-    ///
-    /// `tolerance` defines how far these vertices are allowed to deviate from
-    /// the actual edges of the shape.
-    ///
-    /// No assumptions must be made about already existing contents of `out`, as
-    /// this method might modify them.
-    pub fn approx_vertices(&self, tolerance: f64, out: &mut Vec<Point>) {
-        for edge in &self.edges {
-            out.extend(edge.approx_vertices(tolerance));
-        }
-
-        // As this is a cycle, the last vertex of an edge could be identical to
-        // the first vertex of the next. Let's remove those duplicates.
-        out.dedup();
-    }
-
     /// Compute segments to approximate the edges of this cycle
     ///
     /// `tolerance` defines how far these segments are allowed to deviate from

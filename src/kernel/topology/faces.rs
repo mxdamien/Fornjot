@@ -4,10 +4,10 @@ use decorum::R64;
 use parry2d_f64::shape::Triangle as Triangle2;
 use parry3d_f64::{
     bounding_volume::AABB,
-    math::Isometry,
     query::{Ray, RayCast as _},
-    shape::Triangle as Triangle3,
+    shape::Triangle as Triangle2,
 };
+use parry3d_f64::{math::Isometry, shape::Triangle as Triangle3};
 
 use crate::{
     debug::{DebugInfo, TriangleEdgeCheck},
@@ -80,11 +80,10 @@ impl Face {
                 // polygon, but there aren't many requirements on how
                 // specifically to do that. All we need is a list of polygon
                 // edges. Anything else really doesn't matter.
-                let mut face_as_polygon = Vec::new();
-                edges.approx_segments(tolerance, &mut face_as_polygon);
+                let face_as_polygon = approx.segments;
 
                 // We're also going to need a point outside of the polygon.
-                let aabb = AABB::from_points(&vertices);
+                let aabb = AABB::from_points(&approx.vertices);
                 let outside = aabb.maxs * 2.;
 
                 triangles.retain(|triangle| {
