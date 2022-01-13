@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://hannobraun.github.io/Fornjot/sitemap.xml
