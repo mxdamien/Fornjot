@@ -73,14 +73,14 @@ jobs:
 
       - name: Upload Unix
         if: runner.os != 'Windows'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.PROJ_NAME }}-${{ matrix.target }}
           path: ${{ env.PROJ_NAME }}-${{ matrix.target }}
 
       - name: Upload Windows
         if: runner.os == 'Windows'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ env.PROJ_NAME }}-${{ matrix.target }}.exe
           path: ${{ env.PROJ_NAME }}-${{ matrix.target }}.exe
