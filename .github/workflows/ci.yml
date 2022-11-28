@@ -61,7 +61,7 @@ jobs:
       - name: Install Clippy
         run: rustup component add clippy
       - name: Set up Rust cache
-        uses: Swatinem/rust-cache@1232abb8968faf344409165de17cbf9e7f340fd8
+        uses: Swatinem/rust-cache@v2
       - name: Run `cargo clippy`
         uses: actions-rs/clippy-check@9d09632661e31982c0be8af59aeb96b680641bc4
         with:
@@ -83,7 +83,7 @@ jobs:
           profile: minimal
           target: ${{ matrix.target }}
       - name: Set up Rust cache
-        uses: Swatinem/rust-cache@v1
+        uses: Swatinem/rust-cache@v2
       - name: Run `cargo doc`
         uses: actions-rs/cargo@v1
         with:
@@ -107,7 +107,7 @@ jobs:
           profile: minimal
           target: ${{ matrix.target }}
       - name: Set up Rust cache
-        uses: Swatinem/rust-cache@1232abb8968faf344409165de17cbf9e7f340fd8
+        uses: Swatinem/rust-cache@v2
       - name: Run `export-validator`
         uses: actions-rs/cargo@4ff6ec2846f6e7217c1a9b0b503506665f134c4b
         with:
@@ -135,7 +135,7 @@ jobs:
           profile: minimal
           target: ${{ matrix.target }}
       - name: Set up Rust cache
-        uses: Swatinem/rust-cache@1232abb8968faf344409165de17cbf9e7f340fd8
+        uses: Swatinem/rust-cache@v2
       - name: Run `cargo build`
         uses: actions-rs/cargo@4ff6ec2846f6e7217c1a9b0b503506665f134c4b
         with:

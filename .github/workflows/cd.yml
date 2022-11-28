@@ -41,7 +41,7 @@ jobs:
           target: ${{ matrix.target }}
 
       - name: Cache
-        uses: Swatinem/rust-cache@v1
+        uses: Swatinem/rust-cache@v2
         with:
           key: ${{ matrix.target }}
 
@@ -90,7 +90,7 @@ jobs:
           target: ${{ matrix.target }}
 
       - name: Operator | Cache
-        uses: Swatinem/rust-cache@v1
+        uses: Swatinem/rust-cache@v2
         with:
           key: release-operator-01
 
