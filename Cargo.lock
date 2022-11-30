@@ -1263,7 +1263,7 @@ dependencies = [
  "fj-interop",
  "fj-math",
  "getrandom",
- "raw-window-handle 0.4.3",
+ "raw-window-handle 0.5.0",
  "rfd",
  "thiserror",
  "tracing",
