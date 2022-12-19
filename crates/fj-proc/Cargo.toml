@@ -22,7 +22,7 @@ version = "1.0.148"
 optional = true
 
 [dependencies.syn]
-version = "1.0.104"
+version = "1.0.107"
 features = ["full", "extra-traits"]
 
 [dev-dependencies]
