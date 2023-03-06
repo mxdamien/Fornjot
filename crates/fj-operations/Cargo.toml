@@ -15,4 +15,4 @@ fj.workspace = true
 fj-interop.workspace = true
 fj-kernel.workspace = true
 fj-math.workspace = true
-thiserror = "1.0.35"
+thiserror = "1.0.39"
