@@ -2814,9 +2814,9 @@ dependencies = [
 
 [[package]]
 name = "pollster"
-version = "0.2.5"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5da3b0203fd7ee5720aa0b5e790b591aa5d3f41c3ed2c34a3a393382198af2f7"
+checksum = "22686f4785f02a4fcc856d3b3bb19bf6c8160d103f7a99cc258bddd0251dc7f2"
 
 [[package]]
 name = "ppv-lite86"
@@ -3108,13 +3108,15 @@ dependencies = [
 
 [[package]]
 name = "rfd"
-version = "0.11.0"
+version = "0.11.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc2583255eadc4e0d816cb7648371cc91e49cbac85b0748b6ab417093bff4040"
+checksum = "7cb2988ec50c9bcdb0c012b89643a6094a35a785a37897211ee62e1639342f7b"
 dependencies = [
  "ashpd",
+ "async-io",
  "block",
  "dispatch",
+ "futures-util",
  "js-sys",
  "log",
  "objc",
